@@ -1,0 +1,9 @@
+{
+	"name": "josephscott/bitcement",
+	"description": "A starting point",
+	"license": "MIT",
+	"require": {
+		"php": "^7.2",
+		"nikic/fast-route": "1.3.0"
+	}
+}
