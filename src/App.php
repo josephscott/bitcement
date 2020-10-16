@@ -4,9 +4,11 @@ namespace BitCement;
 
 class App {
 	private $routes;
+	private $inject;
 
 	public function __construct() {
 		$this->routes = [];
+		$this->inject = [];
 	}
 
 	public function dispatch( $route_info ) {
@@ -49,6 +51,10 @@ class App {
 		exit();
 	}
 
+	public function inject( $name, $thing ) {
+		$this->inject[$name] = $thing;
+	}
+
 	public function run() {
 		$dispatcher = \FastRoute\cachedDispatcher(
 			function( \FastRoute\RouteCollector $r ) {
@@ -83,4 +89,7 @@ class App {
 		];
 	}
 
+	public function use( $name ) {
+		return $this->inject[$name];
+	}
 }
