@@ -1,4 +1,6 @@
 <?php
+declare( strict_types = 1 );
+
 use \ParagonIE\AntiCSRF\AntiCRSF;
 
 if ( !defined( 'APP_TWIG_AUTO_RELOAD' ) ) {
