@@ -11,5 +11,5 @@ php -S localhost:9999 -t public
 To get the very latest, use this first line instead:
 
 ```shell
-composer require --dev josephscott/bitceme:dev-trunk
+composer require --dev josephscott/bitcement:dev-trunk
 ```
