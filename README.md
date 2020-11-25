@@ -4,6 +4,6 @@
 
 ```shell
 composer require josephscott/bitcement
-cp -r vendor/josephscott/quickstart .
+cp -r vendor/josephscott/bitcement/quickstart .
 php -S localhost:9999 -t public
 ```
