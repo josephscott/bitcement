@@ -2,6 +2,8 @@
 
 # Quick Start
 
-`git clone https://github.com/josephscott/bitcement.git`
-
-`php -S localhost:9999 -t web`
+```shell
+composer require josephscott/bitcement
+cp -r vendor/josephscott/quickstart .
+php -S localhost:9999 -t public
+```
