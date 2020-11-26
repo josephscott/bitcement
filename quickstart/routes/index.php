@@ -5,7 +5,7 @@ $out =<<<HTML
 
 <div class="row">
 	<div class="col-md">
-		Hello World!
+		<h1>Hello World!</h1>
 	</div>
 </div>
 
