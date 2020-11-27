@@ -11,7 +11,7 @@ class App {
 		$this->inject = [];
 	}
 
-	public function dispatch( $route_info ) {
+	public function dispatch( $route_info, $uri ) {
 		$app = $this;
 		$file_route = function( $file_path, $args ) use ( $app ) {
 			require $file_path;
@@ -79,7 +79,7 @@ class App {
 		$uri = rawurldecode( $uri );
 		$route_info = $dispatcher->dispatch( $http_method, $uri );
 
-		$this->dispatch( $route_info );
+		$this->dispatch( $route_info, $uri );
 	}
 
 	public function route( string $method, string $pattern, $handler ) {
