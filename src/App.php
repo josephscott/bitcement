@@ -12,11 +12,6 @@ class App {
 	}
 
 	public function dispatch( $route_info, $uri ) {
-		$app = $this;
-		$file_route = function( $file_path, $args ) use ( $app ) {
-			require $file_path;
-		};
-
 		switch( $route_info[0] ) {
 			case \FastRoute\Dispatcher::NOT_FOUND;
 				// 404 Not Found
@@ -33,19 +28,27 @@ class App {
 				// 405 Method Not Allowed
 				break;
 			case \FastRoute\Dispatcher::FOUND:
-				$handler = $route_info[1];
-				$vars = $route_info[2];
-
-				if ( is_callable( $handler ) ) {
-					$handler();
-				} elseif (
-					is_string( $handler )
-					&& substr( $handler, 0, 1 ) === '/'
-					&& is_readable( $handler )
-				) {
-					$file_route( $handler, $vars );
-				}
+				$this->hand_off( $route_info[1], $route_info[2] );
 				break;
+		}
+
+		exit();
+	}
+
+	public function hand_off( $handler, $vars ) {
+		$app = $this;
+		$file_route = function ( $file_path, $args ) use ( $app ) {
+			require $file_path;
+		};
+
+		if ( is_callable( $handler ) ) {
+			$handler( $vars );
+		} elseif (
+			is_string( $handler )
+			&& substr( $handler, 0, 1 ) === '/'
+			&& is_readable( $handler )
+		) {
+			$file_route( $handler, $vars );
 		}
 
 		exit();
