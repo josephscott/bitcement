@@ -1,6 +1,7 @@
 {
 	"name": "josephscott/bitcement",
 	"description": "A starting point",
+	"type": "library",
 	"license": "MIT",
 	"require": {
 		"php": "^7.2",
