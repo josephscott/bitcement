@@ -13,5 +13,8 @@
 		"psr-4": {
 			"BitCement\\": "src/"
 		}
+	},
+	"config": {
+		"optimize-autoloader": true
 	}
 }
