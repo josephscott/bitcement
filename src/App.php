@@ -5,27 +5,39 @@ namespace BitCement;
 class App {
 	private $routes;
 	private $inject;
+	private $handle_errors;
 
 	public function __construct() {
 		$this->routes = [];
 		$this->inject = [];
+		$this->handle_errors = [];
+
+		$this->handle_error( 'not_found', function( $vars ) {
+			echo "<h1>Not Found</h1>\n";
+		} );
+
+		$this->handle_error( 'method_not_allowed', function( $vars ) {
+			echo "<h1>Method Not Allowed</h1>\n";
+		} );
 	}
 
 	public function dispatch( $route_info, $uri ) {
 		switch( $route_info[0] ) {
 			case \FastRoute\Dispatcher::NOT_FOUND;
-				// 404 Not Found
-
 				// Redirect trailing slashes
 				if ( substr( $uri, -1 ) === '/' ) {
 					header( "Location: " . rtrim( $uri, '/' ), true, 301 );
 					exit();
 				}
 
+				$this->hand_off( $this->handle_errors['not_found'], [] );
 				break;
 			case \FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
 				$allowed_methods = $route_info[1];
-				// 405 Method Not Allowed
+				$this->hand_off(
+					$this->handle_errors['method_not_allowed'],
+					[]
+				);
 				break;
 			case \FastRoute\Dispatcher::FOUND:
 				$this->hand_off( $route_info[1], $route_info[2] );
@@ -52,6 +64,13 @@ class App {
 		}
 
 		exit();
+	}
+
+	// Possible error conditions:
+	// - not_found
+	// - method_not_allowed
+	public function handle_error( $condition, $handler ) {
+		$this->handle_errors[ $condition ] = $handler;
 	}
 
 	public function inject( $name, $thing ) {
