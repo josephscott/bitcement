@@ -1,6 +1,6 @@
 # Changelog
 
-## 000.000.007 - ????
+## 0.0.7 - 20 Feb 2021
 - Move quickstart to https://github.com/josephscott/bitcement-skeleton
 
 ## 0.0.6 - 15 Feb 2021
