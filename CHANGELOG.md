@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.0.9 - ????
+- Lowercase file names for PHP files
+
 ## 0.0.8 - 25 Mar 2021
 - Update dependency versions
 
