@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.0.9 - ????
+## 0.0.9 - 16 Oct 2024
 - Lowercase file names for PHP files
 
 ## 0.0.8 - 25 Mar 2021
